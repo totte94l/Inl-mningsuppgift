@@ -1,0 +1,18 @@
+header {
+    padding: 20px;
+    background: #333;
+}
+
+header #logo {
+    width: 80px;
+}
+
+header h1 {
+    align-self: center;
+    color: #eaeaea;
+    font-size: 1.5em;
+}
+
+#btnSubmit {
+    margin: 20px 0 20px 0;
+}
