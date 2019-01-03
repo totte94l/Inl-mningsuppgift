@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Registrera nytt konto</title>
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.1/css/all.css" integrity="sha384-gfdkjb5BdAXd+lj+gudLWI+BXq4IuLW5IT+brZEZsLFm++aCMlF1V92rMkPaX4PP" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" media="screen" href="css/main.css" />
+</head>
+<body>
+    <div class="container">
+        <form id="regForm">
+            <div class="form-group">
+                <label for="inpUsername">Användarnamn:</label>
+                <input type="text" name="username" class="form-control" id="inpUsername" placeholder="Ange ett användarnamn..">
+                <label for="inpPassword">Lösenord:</label>
+                <input type="password" name="password" class="form-control" id="inpPassword" placeholder="Ange ett lösenord..">
+                <small id="password-help" class="form-text text-muted">Lösenordet får vara minst sex tecken och måste innehålla minst en siffra och en stor bokstav.</small>
+            </div>
+            <div class="form-group">
+                <p id="gender-title">Kön:</p>
+                <div class="form-check">
+                    <input type="radio" class="form-check-input" name="gender" id="inpMale">
+                    <label for="inpMale" class="form-check-label">Man</label>
+                </div>
+                <div class="form-check">
+                    <input type="radio" class="form-check-input" name="gender" id="inpFemale">
+                    <label for="inpFemale" class="form-check-label">Kvinna</label>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="selOccupation">Sysselsättning:</label>
+                <select name="occupation" id="selOccupation" class="form-control">
+                    <option value="student">Student</option>
+                    <option value="full-time">Jobbar heltid</option>
+                    <option value="part-time">Jobbar deltid</option>
+                    <option value="unemployed">Arbetslös</option>
+                    <option value="retired">Pensionerad</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="txtAbout">Berätta kort om dig själv:</label>
+                <small id="about-help" class="form-text text-muted">(0 / 200 tecken)</small>
+                <textarea name="aboutself" class="form-control" id="txtAbout" rows="5"></textarea>
+            </div>
+            <div class="form-check">
+                <input type="checkbox" class="form-check-input"id="chbAccept">
+                <label for="chbAccept" class="form-check-label"></label>
+                Jag har läst och godkänner de allmänna <a href="#">villkoren och bestämmelserna.</a>
+                </label>
+            </div>
+            <button type="submit" class="btn btn-primary btn-block">Skapa konto</button>
+        </form>
+    </div>
+    
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="javascript/validate.js"></script>
+</body>
+</html>
