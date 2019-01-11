@@ -5,7 +5,7 @@ $(function () {
         fullnameVal = fullnameVal.toLowerCase();
         var regex = new RegExp("^[a-z]([-']?[a-z]+)*( [a-z]([-']?[a-z]+)*)+$");
         
-        if (! regex.test(fullnameVal)) {
+        if (! fullnameVal.match(regex)) {
             //Namnet är antingen tomt eller fel.
             console.log("Ange ditt hela namn");
             fullnameInp.addClass('is-invalid');
@@ -20,7 +20,7 @@ $(function () {
         let passwordInp = $("#inpPassword");
         let password = passwordInp.val();
 
-        let regex = new RegExp("^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{4,8}$.");
+        let regex = new RegExp("/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).*$/");
 
         if(! password.match(regex)) {
             console.log("Lösenordet uppfyller inte alla kriterier.");
