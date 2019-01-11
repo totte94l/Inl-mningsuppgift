@@ -20,11 +20,13 @@ $(function () {
         let passwordInp = $("#inpPassword");
         let password = passwordInp.val();
 
-        let regex = new RegExp("/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).*$/");
+        let regex = /(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,}/;
 
-        if(! password.match(regex)) {
-            console.log("Lösenordet uppfyller inte alla kriterier.");
-            console.log(password);
+        if(! regex.test(password)) {
+            passwordInp.addClass('is-invalid');
+        } else {
+            passwordInp.removeClass('is-invalid');
+            fullnameInp.addClass('is-valid');
         }
         console.log(regex.test(password));
     }
