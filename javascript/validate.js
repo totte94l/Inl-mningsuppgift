@@ -58,7 +58,7 @@ $(function () {
         let aboutVal = aboutInp.val();
 
         if (aboutVal.length > 200) {
-            $("#aboutSelf > .invalid-feedback").html("Mr. hacker, du får inte skriva mer än 200 tecken!");
+            $("#aboutSelf > .invalid-feedback").html("Du får inte skriva mer än 200 tecken!");
             aboutInp.removeClass("is-valid");
             aboutInp.addClass("is-invalid");
         } else if(aboutVal.length < 10) {
@@ -87,6 +87,11 @@ $(function () {
         let chars = txtVal.length;
         $("#counter").html(chars);
 
+        if( chars < 10 || chars > 200 ) {
+            $("#counter").css("color", "red");
+        } else if( chars >= 10 || chars <= 200) {
+            $("#counter").css("color", "green");
+        }
         
     }
 
@@ -165,7 +170,9 @@ $(function () {
                     event.stopPropagation();
                 } else {
                     form.classList.add("was-validated");
-                    console.log("hej!");
+                    localStorage.setItem("fullname",$("#inpFullname").val());
+                    $('#regForm').attr('action','done.html');
+            
                 }
                 
             }, false);

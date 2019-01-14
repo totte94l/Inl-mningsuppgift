@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>title</title>
+    <title>Tack för din ansökan</title>
     
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
@@ -11,10 +11,41 @@
     <link rel="stylesheet" type="text/css" media="screen" href="css/style.css" />
 </head>
 <body>
-    <h1>Grattis!</h1>
+    <div class="container text-center">
+        <div class="alert alert-success mt-5">
+            <h1>Tack för din ansökan <span id="name"></span>!</h1>
+            <p>Vi kommer att höra av oss när ansökningstiden är över.</p>
+        </div>
+        <div class="alert alert-danger">
+            <span class="badge badge-danger">Danger</span>
+            Jag är medveten att lösenordet står i klarttext i URL'en)  
+        </div>
+        <button class="btn btn-primary btn-lg">Hemligt</button>
+        <div id="secret" class="mt-5" style="display: none">
+            <img src="https://media1.tenor.com/images/f7477387b012b814718db09f3575ebaf/tenor.gif?itemid=4989265" class="mb-3" alt="">
+        </div>
+        
+    </div>
+        
     
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="js/script.js"></script>
+
+    <script>
+    $(function() {
+        var fullname = "";
+        if(localStorage.getItem("fullname")) {
+            fullname = localStorage.getItem("fullname");
+            localStorage.removeItem("fullname");
+            $("#name").text(fullname);
+        }
+
+        $("button").on("click", function() {
+            $("#secret").fadeIn(2000);
+            
+        })
+    });
+    </script>
 </body>
 </html>
