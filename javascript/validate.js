@@ -6,14 +6,11 @@ $(function () {
         var regex = new RegExp("^[a-z]([-']?[a-z]+)*( [a-z]([-']?[a-z]+)*)+$");
         
         if (! fullnameVal.match(regex)) {
-            //Namnet är antingen tomt eller fel.
-            console.log("Ange ditt hela namn");
             fullnameInp.addClass('is-invalid');
         } else {
             fullnameInp.removeClass('is-invalid');
             fullnameInp.addClass('is-valid');
         }
-        console.log(regex.test(fullnameVal));
     }
 
     function validatePassword() {
@@ -28,7 +25,6 @@ $(function () {
             passwordInp.removeClass('is-invalid');
             passwordInp.addClass('is-valid');
         }
-        console.log(regex.test(password));
     }
 
     function validateSex() {
@@ -85,6 +81,19 @@ $(function () {
             $("#chbAccept").addClass("is-valid");
         }
     }
+
+    function count() {
+        let txtVal = $("#txtAbout").val();
+        let chars = txtVal.length;
+        $("#counter").html(chars);
+
+        
+    }
+
+    $("#txtAbout").on('keyup propertychange paste', function() {
+        count();
+    })
+
     $('#btnSubmit').on("click", function() {
         validateName();
         validatePassword();
@@ -94,7 +103,23 @@ $(function () {
         validateCheck();
     });
 
-
+    $("form input").change(function() {
+        if( $(this).val().length < 2) {
+            $(this).addClass("is-invalid");
+            $(this).removeClass("is-valid");
+        } else if ( $(this).attr("type") === "text" ) {
+            validateName();
+        } else if ($(this).attr("type") ==="password"){
+            validatePassword();
+        } else if( $(this).attr("type") === "radio") {
+            validateSex();
+        } else if( $(this).attr("type") === "checkbox" ) {
+            validateCheck();
+        } else {
+            $(this).addClass("is-valid");
+            $(this).removeClass("is-invalid");
+        }
+    });
 
     $("form input").blur(function() {
         if( $(this).val().length < 2) {
@@ -122,8 +147,30 @@ $(function () {
     $("form textarea").blur(function() {
         validateSelf();
     })
+
+    $("form select").change(function() {
+        validateOccupation();
+    })
+
+    $("form textarea").change(function() {
+        validateSelf();
+    })
+
+    window.addEventListener("load", function() {
+        var forms = document.getElementsByClassName('needs-validation');
+        Array.prototype.filter.call(forms, function(form) {
+            form.addEventListener("submit", function(event) {
+                if(form.checkValidity() === false) {
+                    event.preventDefault();
+                    event.stopPropagation();
+                } else {
+                    form.classList.add("was-validated");
+                    console.log("hej!");
+                }
+                
+            }, false);
+        });
+    }, false);
+    
+
 });
-
-
-// Ska man kanske ha en function när man går ut fokus(Så inputen blir röd) sen en till när man trycker submit)
-// 0 / 200 ska jag använda keydown/keyUp för att i realtid räkna antalet tecken.
