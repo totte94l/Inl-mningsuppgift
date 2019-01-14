@@ -20,15 +20,17 @@
                 <h1>Ä?</h1>
             </div>
         </header>
-        <form id="regForm">
+        <form id="regForm" class="needs-validation" novalidate>
             <div class="form-group">
                 <label for="inpFullname">Ange för- och efternamn:</label>
-                <input type="text" value="" name="fullname" class="form-control" id="inpFullname" placeholder="Ange hela ditt namn..">
+                <input type="text" value="" name="fullname" class="form-control" id="inpFullname" placeholder="Ange hela ditt namn.." required>
                 <div class="invalid-feedback">
                     Du måste ange ditt fulla namn.
                 </div>
+            </div>
+            <div class="form-group">
                 <label for="inpPassword">Lösenord:</label>
-                <input type="password" name="password" class="form-control" id="inpPassword" placeholder="Ange ett lösenord..">
+                <input type="password" name="password" class="form-control" id="inpPassword" placeholder="Ange ett lösenord.." required>
                 <small id="password-help" class="form-text text-muted">Lösenordet får vara minst sex tecken och måste innehålla minst en siffra och en stor bokstav.</small>
                 <div class="invalid-feedback">
                     Lösenordet uppfyller inte alla krav.
@@ -36,39 +38,54 @@
             </div>
             <div class="row">
                 <div class="col md-4">
-                    <p id="gender-title">Kön:</p>
-                    <div class="form-check">
-                        <input type="radio" class="form-check-input" name="gender" id="inpMale">
-                        <label for="inpMale" class="form-check-label">Man</label>
-                    </div>
-                    <div class="form-check">
-                        <input type="radio" class="form-check-input" name="gender" id="inpFemale">
-                        <label for="inpFemale" class="form-check-label">Kvinna</label>
+                    <div id="gender" class="form-group custom-control">
+                        <p id="gender-title">Kön:</p>
+                        <div class="form-check">
+                            <input type="radio" class="form-check-input" name="gender" id="inpMale" required>
+                            <label for="inpMale" class="form-check-label">Man</label>
+                        </div>
+                        <div class="form-check">
+                            <input type="radio" class="form-check-input" name="gender" id="inpFemale" required>
+                            <label for="inpFemale" class="form-check-label">Kvinna</label>
+                            <div class="invalid-feedback">
+                                    Du måste ange ditt kön
+                            </div>
+                        </div>
                     </div>
                 </div>
                 <div class="col md-8 mb-4">
                     <div class="form-group">
                         <label for="selOccupation">Sysselsättning:</label>
-                        <select name="occupation" id="selOccupation" class="form-control">
+                        <select name="occupation" id="selOccupation" class="form-control" required>
+                            <option value="">Välj..</option>
                             <option value="student">Student</option>
                             <option value="full-time">Jobbar heltid</option>
                             <option value="part-time">Jobbar deltid</option>
                             <option value="unemployed">Arbetslös</option>
                             <option value="retired">Pensionerad</option>
                         </select>
+                        <div class="invalid-feedback">
+                            Du måste välja sysselsättning
+                        </div>
                     </div>
                 </div>
             </div>
-            <div class="form-group">
+            <div id="aboutSelf" class="form-group">
                 <label for="txtAbout">Berätta kort om dig själv:</label>
                 <small id="about-help" class="form-text text-muted">(0 / 200 tecken)</small>
                 <textarea name="aboutself" class="form-control" id="txtAbout" rows="5"></textarea>
+                <div class="invalid-feedback">
+                    Lite väl kort beskrivning. Berätta mer!
+                </div>
             </div>
             <div class="form-check">
-                <input type="checkbox" class="form-check-input" id="chbAccept">
+                <input type="checkbox" class="form-check-input" id="chbAccept" required>
                 <label for="chbAccept" class="form-check-label">
                 Jag har läst och godkänner de allmänna <a href="#">villkoren och bestämmelserna.</a>
                 </label>
+                <div class="invalid-feedback">
+                    Du måste godkänna villkoren
+                </div>
             </div>
             <button type="button" name="submit" id="btnSubmit" class="btn btn-primary btn-block">Skapa konto</button>
         </form>
