@@ -7,9 +7,12 @@ $(function () {
         
         if (! fullnameVal.match(regex)) {
             fullnameInp.addClass('is-invalid');
+            fullnameInp.removeClass('is-valid');
+            return false;
         } else {
             fullnameInp.removeClass('is-invalid');
             fullnameInp.addClass('is-valid');
+            return true;
         }
     }
 
@@ -21,9 +24,12 @@ $(function () {
 
         if(! regex.test(password)) {
             passwordInp.addClass('is-invalid');
+            passwordInp.removeClass('is-valid');
+            return false;
         } else {
             passwordInp.removeClass('is-invalid');
             passwordInp.addClass('is-valid');
+            return true;
         }
     }
 
@@ -34,9 +40,11 @@ $(function () {
         if( maleInp.is(':checked') || femaleInp.is(':checked') ) {
             $("input[name='gender']").removeClass("is-invalid");
             $("input[name='gender']").addClass("is-valid");
+            return true;
         } else {
             $("input[name='gender']").removeClass("is-valid");
             $("input[name='gender']").addClass("is-invalid");
+            return false;
         }
     }
 
@@ -47,9 +55,11 @@ $(function () {
         if(occupationVal === "") {
             occupationInp.removeClass("is-valid");
             occupationInp.addClass("is-invalid");
+            return false;
         } else {
             occupationInp.removeClass("is-invalid");
             occupationInp.addClass("is-valid");
+            return true;
         }
     }
 
@@ -61,14 +71,17 @@ $(function () {
             $("#aboutSelf > .invalid-feedback").html("Du får inte skriva mer än 200 tecken!");
             aboutInp.removeClass("is-valid");
             aboutInp.addClass("is-invalid");
+            return false;
         } else if(aboutVal.length < 10) {
             $("#aboutSelf > .invalid-feedback").html("Du behöver berätta lite mer.");
             aboutInp.removeClass("is-valid");
             aboutInp.addClass("is-invalid");
+            return false;
         }
         else {
             aboutInp.removeClass("is-invalid");
             aboutInp.addClass("is-valid");
+            return true;
         }
     }
 
@@ -76,9 +89,13 @@ $(function () {
         if( !$("#chbAccept").is(":checked") ) {
             $("#chbAccept").removeClass("is-valid");
             $("#chbAccept").addClass("is-invalid");
+
+            return false;
         } else {
             $("#chbAccept").removeClass("is-invalid");
             $("#chbAccept").addClass("is-valid");
+
+            return true;
         }
     }
 
@@ -100,12 +117,12 @@ $(function () {
     })
 
     $('#btnSubmit').on("click", function() {
-        validateName();
-        validatePassword();
-        validateSex();
-        validateOccupation();
-        validateSelf();
-        validateCheck();
+        if( validateName() && validatePassword() && validateSex() && validateOccupation() && validateSelf() && validateCheck() ) {
+
+        } else {
+            event.preventDefault();
+            event.stopPropagation();
+        }
     });
 
     $("form input").change(function() {
@@ -161,23 +178,5 @@ $(function () {
         validateSelf();
     })
 
-    window.addEventListener("load", function() {
-        var forms = document.getElementsByClassName('needs-validation');
-        Array.prototype.filter.call(forms, function(form) {
-            form.addEventListener("submit", function(event) {
-                if(form.checkValidity() === false) {
-                    event.preventDefault();
-                    event.stopPropagation();
-                } else {
-                    form.classList.add("was-validated");
-                    localStorage.setItem("fullname",$("#inpFullname").val());
-                    $('#regForm').attr('action','done.html');
-            
-                }
-                
-            }, false);
-        });
-    }, false);
-    
 
 });
